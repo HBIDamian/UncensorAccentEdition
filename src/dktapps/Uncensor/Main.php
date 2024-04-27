@@ -1,5 +1,4 @@
 <?php
-
 namespace dktapps\Uncensor;
 
 use pocketmine\event\Listener;
@@ -16,7 +15,6 @@ class Main extends PluginBase implements Listener{
 
 	public function onEnable() : void{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-
 		if(file_exists($this->getDataFolder() . "profanity_filter.wlist")){
 			$this->words = file($this->getDataFolder() . "profanity_filter.wlist", FILE_IGNORE_NEW_LINES);
 			$this->getLogger()->notice("Loaded word list!");
@@ -25,18 +23,20 @@ class Main extends PluginBase implements Listener{
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 			return;
 		}
-
-		$this->regex = '/.*?(' . implode('|', array_map('preg_quote', $this->words)) . ').*?/iu';
+		$this->regex = '/\b(?:' . implode('|', array_map('preg_quote', $this->words)) . ')\b/iu';
 	}
 
 	private function unfilter(string $message) : string{
 		return preg_replace_callback($this->regex, function($matches){
-			return str_replace($matches[1], mb_substr($matches[1], 0, 1) . "\u{FEFF}" . mb_substr($matches[1], 1), $matches[0]);
+			// Replace vowels with vowels with accents (e.g., a -> á)
+			$vowels =        ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+			$vowel_accents = ['á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú'];
+			return str_replace($vowels, $vowel_accents, $matches[0]);
 		}, $message);
 	}
-
+	
 	public function onDataPacketSend(DataPacketSendEvent $event) : void{
-		$pk = $event->getPacket();
+		$pk = $event->getPackets()[0]; // [0] for some reason works, and I cba to figure out why it doesn't without it
 		if($pk instanceof TextPacket){
 			if($pk->type !== TextPacket::TYPE_TRANSLATION){
 				$pk->message = $this->unfilter($pk->message);

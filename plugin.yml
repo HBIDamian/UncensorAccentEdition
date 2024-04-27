@@ -1,6 +1,6 @@
-name: Uncensor
-main: dktapps\Uncensor\Main
-version: 0.2.3
+name: UncensorAccentEdition
+main: HBIDamian\UncensorAccentEdition\Main
+version: 0.2.4
 api: 5.0.0
 load: POSTWORLD
 author: dktapps & HBIDamian

@@ -1,5 +1,5 @@
 <?php
-namespace dktapps\Uncensor;
+namespace HBIDamian\UncensorAccentEdition;
 
 use pocketmine\event\Listener;
 use pocketmine\event\server\DataPacketSendEvent;
@@ -20,9 +20,9 @@ class Main extends PluginBase implements Listener{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		if(file_exists($this->getDataFolder() . "profanity_filter.wlist")){
 			$this->words = file($this->getDataFolder() . "profanity_filter.wlist", FILE_IGNORE_NEW_LINES);
-			$this->getLogger()->notice("Loaded word list!");
+			$this->getLogger()->notice("Loaded profanity filter word list!");
 		}else{
-			$this->getLogger()->error("Can't find word list! Please extract it from the game and place it in the plugin's data folder.");
+			$this->getLogger()->error("Can't find profanity filter word list! Please extract it from the game and place it in the plugin's data folder.");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 			return;
 		}
@@ -34,12 +34,8 @@ class Main extends PluginBase implements Listener{
 
 	private function unfilter(string $message) : string{
 		return preg_replace_callback($this->regex, function($matches){
-			// $vowels is the config "Before" value
-			// $vowel_accents is the config "After" value
-			// Get the config values as an array
 			$vowels = $this->config->get("Before");
 			$vowel_accents = $this->config->get("After");
-			// print_r($this->config->getAll());
 			return str_replace($vowels, $vowel_accents, $matches[0]);
 		}, $message);
 	}

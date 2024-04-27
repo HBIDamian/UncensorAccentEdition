@@ -22,4 +22,5 @@ This plugin operates directly on TextPacket as it is sent. Most swear-filter plu
 
 ## Afternote:
 
-You can bypass the profanity filter without resource packs or plugins. All you need is to replace letters with it's accented alternative.
+- You can bypass the profanity filter without resource packs or plugins. All you need is to replace letters with it's accented alternative.
+- Why did I reuse Dylan's code? Because I'm lazy and I don't want to write my own code. So it's a fork (or Spoon, if you will) of [Dylan's Uncensor plugin](https://github.com/dktapps-pm-pl/Uncensor).

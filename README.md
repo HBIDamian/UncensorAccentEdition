@@ -18,4 +18,8 @@ Very simple. It simply replaces vowels with accented vowels. This ensures that i
 
 ## Will it interfere with any swear-filter plugins I already have?
 
-This plugin operates directly on TextPacket as it is sent. Most swear-filter plugins will already have redacted bad words by the time the message reaches this plugin. It is therefore unlikely to interfere with existing plugins, however this has not been tested.
+This plugin operates directly on TextPacket as it is sent. Most swear-filter plugins will already have redacted bad words by the time the message reaches this plugin. It is therefore unlikely to interfere with existing plugins, however, this has not been tested.
+
+## Afternote:
+
+You can bypass the profanity filter without resource packs or plugins. All you need is to replace letters with it's accented alternative.

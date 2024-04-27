@@ -1,0 +1,33 @@
+# Unsensor - Accent Edition
+#
+# Every letter in the "before" section must have a corresponding letter in the "after" section.
+# (For example, 'a' will be replaced with 'á' and 'A' will be replaced with 'Á')
+# If you make a mistake, the plugin will not work properly, and you will have to fix it.
+#
+# This will replace every letter in the "before" section with the corresponding letter in the "after" section on censored words.
+
+# "Before" - The letter that will be replaced.
+Before:
+  - 'a'
+  - 'e'
+  - 'i'
+  - 'o'
+  - 'u'
+  - 'A'
+  - 'E'
+  - 'I'
+  - 'O'
+  - 'U'
+
+# "After" - The letter that will replace the letter in the "before" section.
+After:
+  - 'á'
+  - 'é'
+  - 'í'
+  - 'ó'
+  - 'ú'
+  - 'Á'
+  - 'É'
+  - 'Í'
+  - 'Ó'
+  - 'Ú'

@@ -12,6 +12,10 @@ A plugin for PocketMine-MP to automatically bypass client-sided profanity filter
 
 You can extract it from any current version of the game. It is not included with the files for this plugin due to potential licensing issues.
 
+Mojang may have B64 encoded it, so you'll need to decode it first before adding it to your plugin. 
+
+You can find my efforts at archiving it [here](https://gist.github.com/HBIDamian/4d7c100e9c313b83fa292876e77132f1)
+
 ## How does it work?
 
 Very simple. It simply replaces vowels with accented vowels. This ensures that it does not match client-sided filtering.
